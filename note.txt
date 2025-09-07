@@ -1,1 +1,87 @@
 note
+
+善用標頭檔 #include <bits/stdc++.h>
+
+
+#include <sstream> 
+1.分割字串 
+    string line = "apple banana orange";
+    istringstream iss(line);
+
+    string word;
+    while (iss >> word) {
+        cout << word << endl;
+    } 
+
+2.string/int轉換
+    string s = "123 45";
+    istringstream iss(s);
+    int a, b;
+    iss >> a >> b;
+
+    int x = 42;
+    double y = 3.14;
+    ostringstream oss;
+    oss << "x = " << x << ", y = " << y;
+    string result = oss.str();
+
+
+找最小公因數gcd
+
+
+# include <fstream>
+file讀寫
+1.read
+    ifstream fin("input.txt");
+    string line;
+    while (getline(fin, line)) { // 一次讀一行
+        cout << line << endl;
+    }
+    fin.close(); // 關閉檔案
+
+2.write
+    ofstream fout("output.txt"); // 開啟檔案 (沒有就新建)
+    fout << 123 << " " << 45.6 << endl; // 寫入檔案
+    fout.close(); // 關閉檔案
+
+
+初始化陣列為某值(int/char...) memset(arr,值,sizeof(arr))
+
+
+reverse反轉array/vector/string
+1.array
+    int arr[] = {1, 2, 3, 4, 5};
+    reverse(arr, arr + 5);  // [1,5) → 全部反轉 (5,4,3,2,1)
+    reverse(arr, arr + 3);  // [1,3) → 部分反轉 (3,2,1,4,5)
+
+2.vector
+    vector<char> v = {'a', 'b', 'c', 'd'};
+    reverse(v.begin(), v.end()); // (d,c,b,a)
+
+3.string
+    string s = "hello";
+    reverse(s.begin(), s.end()); // (olleh)
+
+4.不想更改原本的資料 reverse_copy
+    vector<int> v = {1,2,3,4};
+    vector<int> out(4);
+    reverse_copy(v.begin(), v.end(), out.begin()); // out = {4,3,2,1}, v 不變
+
+
+map 儲存key-value且按照key自動排序 key is unique
+1.插入
+m.insert({"key", value}); 
+m["key"] = value;
+
+2.查找
+if (m.count("key")) cout << "存在" << endl;
+
+3.刪除
+m.erase("key");   // 用 key
+m.erase(m.begin());  // 用 iterator
+
+
+getline 讀取整行字串
+    string line;
+    getline(cin, line); // 預設是\n作為分隔符號 // cin作為讀取來源
+    getline(ifstream, line, ','); // 用,作為分隔符號 // file作為讀取來源
